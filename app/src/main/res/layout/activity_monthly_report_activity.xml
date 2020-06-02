@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".monthly_report_activity"
+    android:gravity="center"
+    android:animateLayoutChanges="true"
+    android:layout_marginLeft="15dp"
+    android:layout_marginRight="15dp"
+    android:layout_gravity="center">
+
+    <ImageView
+        android:id="@+id/imgView_logo"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:adjustViewBounds="true"
+        android:layout_above="@+id/splash_monthly"
+        android:scaleType="fitCenter"
+        android:src="@drawable/icons8_report_card_200px" />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:animateLayoutChanges="true"
+        android:gravity="center"
+        android:id="@+id/splash_monthly"
+        android:visibility="gone">
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+
+        android:layout_centerHorizontal="true"
+        android:clickable="true"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/btn_bg"
+        android:fontFamily="sans-serif-medium"
+        android:paddingLeft="70dp"
+        android:paddingRight="70dp"
+        android:text="From"
+
+        android:id="@+id/from_date"
+        android:onClick="fromDate"
+        android:textAllCaps="false"
+        android:textColor="@android:color/white"
+        android:textSize="16sp" />
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+
+        android:layout_centerHorizontal="true"
+        android:clickable="true"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/btn_bg"
+        android:fontFamily="sans-serif-medium"
+        android:paddingLeft="70dp"
+        android:paddingRight="70dp"
+        android:text="To"
+
+        android:id="@+id/to_date"
+        android:onClick="toDate"
+        android:textAllCaps="false"
+        android:textColor="@android:color/white"
+        android:textSize="16sp" />
+
+
+
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+
+        android:layout_centerHorizontal="true"
+        android:clickable="true"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/btn_bg"
+        android:fontFamily="sans-serif-medium"
+        android:paddingLeft="70dp"
+        android:paddingRight="70dp"
+        android:text="show"
+        android:id="@+id/login_button"
+        android:onClick="showReport"
+        android:textAllCaps="false"
+        android:textColor="@android:color/white"
+        android:textSize="16sp" />
+
+    </LinearLayout>
+
+</RelativeLayout>
