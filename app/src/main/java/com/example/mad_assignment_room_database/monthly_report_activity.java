@@ -18,8 +18,12 @@ import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import com.google.android.material.datepicker.MaterialDatePicker;
+import com.google.android.material.datepicker.MaterialPickerOnPositiveButtonClickListener;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Date;
 
 public class monthly_report_activity extends AppCompatActivity
 {
@@ -42,6 +46,12 @@ public class monthly_report_activity extends AppCompatActivity
         }
     };
 
+    private MaterialDatePicker.Builder frombuilder;
+    private MaterialDatePicker frommaterialDatePicker;
+
+    private MaterialDatePicker.Builder tobuilder;
+    private MaterialDatePicker tomaterialDatePicker;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -55,27 +65,52 @@ public class monthly_report_activity extends AppCompatActivity
 //        fromDay=findViewById(R.id.monthly_report_from_day);
 //        fromMonth=findViewById(R.id.monthly_report_from_month);
 //        fromYear=findViewById(R.id.monthly_report_from_year);
+
+        frombuilder=MaterialDatePicker.Builder.datePicker();
+        frombuilder.setTitleText("Select the start date");
+        frommaterialDatePicker=frombuilder.build();
+        tobuilder=MaterialDatePicker.Builder.datePicker();
+        tobuilder.setTitleText("Select the end date");
+        tomaterialDatePicker=tobuilder.build();
             handler.postDelayed(runnable,500);
         intent=new Intent(this,monthly_report_form_activity.class);
-        mDateSetListener = new DatePickerDialog.OnDateSetListener() {
+//        mDateSetListener = new DatePickerDialog.OnDateSetListener() {
+//            @Override
+//            public void onDateSet(DatePicker datePicker, int year, int month, int day) {
+//                //month = month + 1;
+//                intent.putExtra("fromday",day);
+//                intent.putExtra("frommonth",month);
+//                intent.putExtra("fromyear",year);
+//            }
+//        };
+//
+//        mDateSetListener1 = new DatePickerDialog.OnDateSetListener() {
+//            @Override
+//            public void onDateSet(DatePicker datePicker, int year, int month, int day) {
+//                //month = month + 1;
+//                intent.putExtra("today",day);
+//                intent.putExtra("tomonth",month);
+//                intent.putExtra("toyear",year);
+//            }
+//        };
+        frommaterialDatePicker.addOnPositiveButtonClickListener(new MaterialPickerOnPositiveButtonClickListener() {
             @Override
-            public void onDateSet(DatePicker datePicker, int year, int month, int day) {
-                //month = month + 1;
-                intent.putExtra("fromday",day);
-                intent.putExtra("frommonth",month);
-                intent.putExtra("fromyear",year);
+            public void onPositiveButtonClick(Object selection) {
+                String from_date=selection.toString();
+                intent.putExtra("from_date",from_date);
+                flag1=true;
             }
-        };
+        });
+        tomaterialDatePicker.addOnPositiveButtonClickListener(new MaterialPickerOnPositiveButtonClickListener() {
+            @Override
+            public void onPositiveButtonClick(Object selection) {
+                String to_date=selection.toString();
+                intent.putExtra("to_date",to_date);
+                flag2=true;
+            }
+        });
 
-        mDateSetListener1 = new DatePickerDialog.OnDateSetListener() {
-            @Override
-            public void onDateSet(DatePicker datePicker, int year, int month, int day) {
-                //month = month + 1;
-                intent.putExtra("today",day);
-                intent.putExtra("tomonth",month);
-                intent.putExtra("toyear",year);
-            }
-        };
+
 
 
 
@@ -134,35 +169,39 @@ public class monthly_report_activity extends AppCompatActivity
 
     public void fromDate(View view)
     {
-        Calendar cal = Calendar.getInstance();
-        int year = cal.get(Calendar.YEAR);
-        int month = cal.get(Calendar.MONTH);
-        int day = cal.get(Calendar.DAY_OF_MONTH);
-
-        DatePickerDialog dialog = new DatePickerDialog(
-                monthly_report_activity.this,
-                android.R.style.Theme_Holo_Light_Dialog_MinWidth,
-                mDateSetListener,
-                year,month,day);
-        dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
-        dialog.show();
-        flag1=true;
+//        Calendar cal = Calendar.getInstance();
+//        int year = cal.get(Calendar.YEAR);
+//        int month = cal.get(Calendar.MONTH);
+//        int day = cal.get(Calendar.DAY_OF_MONTH);
+//
+//        DatePickerDialog dialog = new DatePickerDialog(
+//                monthly_report_activity.this,
+//                android.R.style.Theme_Holo_Light_Dialog_MinWidth,
+//                mDateSetListener,
+//                year,month,day);
+//        dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+//        dialog.show();
+        frommaterialDatePicker.show(getSupportFragmentManager(),"from_Date_picker");
+        //flag1=true;
     }
 
     public void toDate(View view)
     {
-        Calendar cal = Calendar.getInstance();
-        int year = cal.get(Calendar.YEAR);
-        int month = cal.get(Calendar.MONTH);
-        int day = cal.get(Calendar.DAY_OF_MONTH);
-
-        DatePickerDialog dialog = new DatePickerDialog(
-                monthly_report_activity.this,
-                android.R.style.Theme_Holo_Light_Dialog_MinWidth,
-                mDateSetListener1,
-                year,month,day);
-        dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
-        dialog.show();
-        flag2=true;
+//        Calendar cal = Calendar.getInstance();
+//        int year = cal.get(Calendar.YEAR);
+//        int month = cal.get(Calendar.MONTH);
+//        int day = cal.get(Calendar.DAY_OF_MONTH);
+//
+//        DatePickerDialog dialog = new DatePickerDialog(
+//                monthly_report_activity.this,
+//                android.R.style.Theme_Holo_Light_Dialog_MinWidth,
+//                mDateSetListener1,
+//                year,month,day);
+//        dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+//        dialog.show();
+//        flag2=true;
+        tomaterialDatePicker.show(getSupportFragmentManager(),"to_date_picker");
     }
+
+
 }

@@ -22,9 +22,8 @@ public class monthly_report_form_activity extends AppCompatActivity
     private List<ExpenseEntity> list;
     private List<ExpenseEntity> filtered;
     private TextView amountLeftTv,expenseDetailstv,totalAmount;
-    int day;
-    int month;
-    int year;
+    private String date;
+
     private List<ProfitEntity> profitList;
 
     @Override
@@ -34,18 +33,18 @@ public class monthly_report_form_activity extends AppCompatActivity
         setContentView(R.layout.activity_monthly_report_form_activity);
 
         Intent intent=getIntent();
-        from=new Date();
-        day=intent.getIntExtra("fromday",0);
-        month=intent.getIntExtra("frommonth",0);
-        year=intent.getIntExtra("fromyear",0);
-        from.setDate(day);
-        from.setMonth(month);
-       // from.setYear(year);
-        to=new Date();
 
-        to.setDate(intent.getIntExtra("today",0));
-        to.setMonth(intent.getIntExtra("tomonth",0));
-       // to.setYear(intent.getIntExtra("toyear",0));
+        date=intent.getStringExtra("from_date");
+
+            from=new Date(Long.parseLong(date));
+
+
+        date=intent.getStringExtra("to_date");
+       // from.setYear(year);
+
+            to=new Date(Long.parseLong(date));
+
+
 
         database=ExpenseDatabase.getInstance(this);
 
